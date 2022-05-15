@@ -14,7 +14,7 @@ class ArticleView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['articles'] = Article.objects.filter(author=self.request.user, status='published')
+        context['articles'] = Article.objects.filter()
         return context
 
 class ArticleDetailView(DetailView):

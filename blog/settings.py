@@ -1,9 +1,10 @@
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(os.path.join(BASE_DIR, 'blog\.env'))
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
@@ -51,11 +52,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
 }
 
 AUTH_PASSWORD_VALIDATORS = [
