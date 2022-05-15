@@ -5,19 +5,17 @@
     <title>Techstructive Blog</title>
     {% load static %}
     <link rel="icon" href="{% static 'img/tbicon.png' %}" >
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
-    <a class="site-title" href="{{ "/" }}">
-        <img src="{% static 'img/blogo.png' %}" >
-    </a>
+     <img src="{% static 'img/blogo.png' %}" >
         <nav>
             <ul>
                 <li><a href="{% url 'listpost' %}">Blog</a></li>
-                <li><a href="#" >Tags</a></li>
-                <li><a href="#" >Series</a></li>
-                <li><a href="#" >About</a></li>
-                <li><a href="#" >Contact</a></li>
+                <li><a href="#">Tags</a></li>
+                <li><a href="#">Series</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
                 {% if user.username == "admin" %}
                 <li><a href="{% url 'createpost' %}">Create</a></li>
                 {%endif %}
