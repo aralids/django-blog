@@ -32,7 +32,7 @@ SECRET_KEY = env(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default=True)
 
-ALLOWED_HOSTS = ["django-blog-production.up.railway.app",]
+ALLOWED_HOSTS = ["django-blog-production.up.railway.app","127.0.0.1"]
 
 
 # Application definition
@@ -52,6 +52,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "rest_framework",
 ]
 
 LOCAL_APPS = [
@@ -105,7 +106,7 @@ DATABASES = {"default":{
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES["default"].update(env.db("DATABASE_URL"))
+#DATABASES["default"].update(env.db("DATABASE_URL"))
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
