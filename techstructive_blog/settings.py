@@ -32,7 +32,7 @@ SECRET_KEY = env(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default=True)
 
-ALLOWED_HOSTS = ["django-blog-production.up.railway.app","127.0.0.1"]
+ALLOWED_HOSTS = ["django-blog.up.railway.app","127.0.0.1"]
 
 
 # Application definition
@@ -64,6 +64,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,11 +123,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 STATIC_URL = 'static/'
-STATIC_ROOT = "staticfiles"
+STATIC_ROOT = 'static'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATICFILES_DIRS = (STATIC_URL,)
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+STATICFILES_DIRS = (
+("js", os.path.join(STATIC_ROOT, 'js')),
+("css", os.path.join(STATIC_ROOT, 'css')),
+("images", os.path.join(STATIC_ROOT, 'images')),
+("fonts", os.path.join(STATIC_ROOT, 'fonts')),
+)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
